@@ -8,7 +8,7 @@ You can clone the repository and then install the files in the apropriate places
 
 ```
 git clone https://github.com/thekaiz3n/timewizard.git
-cd justdo
+cd timewizard
 sudo cp timewizard.sh /usr/bin/timewizard
 cp -r .timewizard/* ~/.timewizard
 ```
