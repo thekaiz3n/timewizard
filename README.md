@@ -35,13 +35,6 @@ justdo 'some text" minutes reminder
 justdo "super boring work" 15 13
 ```
 
-#### Arch Linux
-
-If you have AUR enabled you can install it with your favorite aur helper. eg with yay:
-```
-yay -S timewizard
-```
-
 ### Configuration
 The file is: $HOME/.timewizard/timewizard.conf
 #### Bar progress
