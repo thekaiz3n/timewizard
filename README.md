@@ -29,10 +29,10 @@ timewizard &
 
 or you can name your task, customize the timer and the reminder (in minutes) like
 
-justdo 'some text" minutes reminder
+timewizard 'some text" minutes reminder
 
 ```
-justdo "super boring work" 15 13
+timewizard "super boring work" 15 13
 ```
 
 ### Configuration
@@ -45,7 +45,7 @@ If configured yes a progress bar is shown in the terminal.
 BAR_PROGRESS="yes"
 ```
 #### Screen locker
-If configured after the finish the screen is locked
+If configured after the finish the screen is locked.
 ```
 # Default locker command
 locker=""
@@ -54,3 +54,7 @@ Recommend screen lockers:
 - slock - https://tools.suckless.org/slock/
 - loginctl lock-session 1 - Is used in kde plasma.
 
+### Next in the project
+- [ ] Save the time spend and sessions, track the use time.
+- [ ] Add a status flag, to check the current time of jobs in background.
+- [ ] Add to AUR repository.
