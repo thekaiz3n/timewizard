@@ -2,7 +2,7 @@
 # shellcheck source=/dev/null
 # Usage timewizard "task name" duration(mins) interval(seconds)
 
-ASSETS="/home/$USER/timewizard/.timewizard"
+ASSETS="/home/$USER/.timewizard"
 
 # Empty initialization just to make shellcheck stop complaining 
 mins=""
