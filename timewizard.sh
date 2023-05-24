@@ -2,8 +2,10 @@
 # shellcheck source=/dev/null
 # Usage timewizard "task name" duration(mins) interval(seconds)
 
+trap handler INT QUIT KILL
+
 CONFIG_FOLDER="/home/$USER/.config/timewizard"
-CONFIG_HISTORY="$CONFIG_FOLDER/history"
+CONFIG_HISTORY="$CONFIG_FOLDER/history.csv"
 CONFIG_TAGS="$CONFIG_FOLDER/tags"
 CONFIG_TIMER="$CONFIG_FOLDER/timer"
 
@@ -40,14 +42,37 @@ chooseTimer (){
    fi
 }
 
+saveStartHistory(){
+      echo $TAG,$TIMER,$(date +%d/%m/%Y),$(date +%A),$(date +%H:%M),$(date +%H:%M)  >> $CONFIG_HISTORY
+}
+
+countdown() {
+    notify-send "${APP_NAME}" "Start: ${task}"
+    SECS=$1*60
+    start="$(( $(date '+%s') + $SECS))"
+    while [ $start -ge $(date +%s) ]; do
+        time="$(( $start - $(date +%s) ))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
+
+handler(){
+echo "Saving and exiting!"
+saveStartHistory
+exit 1
+}
+
 chooseTag
 chooseTimer
+countdown $TIMER
+saveStartHistory
+
 
 # Pomodoro time start: notify user
-secs=$(( mins * 60 ))
-loops=$((secs / interval))
-notify-send "${APP_NAME}" "Start: ${task}"
-
+#SECS=$(($TIMER * 60 ))
+#loops=$((secs / interval))
+#notify-send "${APP_NAME}" "Start: ${task}"
 # Progress bar loop
 #if [ "${BAR_PROGRESS}" == "yes" ]; then
 #    SECONDS=0
